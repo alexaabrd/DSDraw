@@ -1,7 +1,8 @@
 <?php 
 session_start();
  require_once "functions.php";
-
+  if (!isset($_SESSION['teacher'])) header('location:login.php');
+  if ($_SESSION['teacher'] != false)  header('location:teacher.php');
 ?>
 
 <html>
@@ -15,21 +16,21 @@ session_start();
   <h1>DSDRAW</h1>
 
   <div class="header">
-    <form action="logout.php">
-     <label><?php echo "<h2> Hello, " . $_SESSION['first'] ."! </h2>"; ?><label>
-     <input type="submit" name="logout" value="Logout">
+    <form action="login.php" method="post">
+     <label><?php echo "<h2> Hello, " . $_SESSION['first'] ."! </h2>"; ?></label>
+     <input class='float' type="submit" name="logout" value="Logout">
     </form>
   </div>
 
   <div class="container">
     <form  class='style1' action="updateStudent.php" method="post">
+      <label class='title-label'>Your Quizzes</label>
       <table style='width:100%'>
 	<?php
           $classes = getClasses();
 	  if ($classes->num_rows == 0) {
 		echo "You currently have no quizzes";
 	  } else {
-	      echo "Here are your quizzes:";
 	      for ($i = 0; $i < $classes->num_rows; $i++) {
 		$row = $classes->fetch_row();
 		$classname = getName($row[0]);

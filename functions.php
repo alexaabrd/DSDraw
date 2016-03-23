@@ -68,7 +68,8 @@ function login($u, $p) {
 function getClasses() {
   $conn = connect();
 
-  if ($_SESSION['teacher']) $query = "select * from classrooms where owner = " . $_SESSION['user_id'] . ";";
+  if ($_SESSION['teacher']) 
+     $query = "select * from classrooms where deleted = false AND owner = " . $_SESSION['user_id'] . ";";
   else $query = "select * from enrollment where userID = " . $_SESSION['user_id'] . ";";
 
   $result = $conn->query($query);
@@ -143,11 +144,21 @@ function getResults($qid, $uid) {
 
 function addClass($name, $id) {
  $conn = connect();
- $query = "insert into classrooms (owner,name) values (" . $id .",'" . $name . "');";
- $conn->query($query);
- $query = "Select * from classrooms where name = '" . $name . "' AND owner = " . $id .";";
- $class =  $conn->query($query);
- $row = $class->fetch_row();
+
+ $query = "select * from classrooms where name = '" . $name . "' AND owner = " . $id . " ;";
+ $result = $conn->query($query);
+ if ($result->num_rows > 0) {
+   $row = $result->fetch_row();
+   $query = "update classrooms set deleted = false where id = " . $row[0] . " ;";
+   $result = $conn->query($query);
+ } else {
+   echo "class did not exist";
+   $query = "insert into classrooms (owner,name) values (" . $id .",'" . $name . "');";
+   $conn->query($query);
+   $query = "Select * from classrooms where name = '" . $name . "' AND owner = " . $id .";";
+   $class =  $conn->query($query);
+   $row = $class->fetch_row();
+   }
  $conn->close();
  return $row[0];
 }
@@ -187,6 +198,18 @@ function addStudent($uid, $cid) {
 }
 
 
+
+function deleteClass($id) {
+ $conn = connect();
+
+  $query = "update classrooms set deleted = 1 where id = " . $id . ";";
+  echo $query;
+  $conn->query($query);
+
+
+ $conn->close();
+
+}
 
 function logout() {
 session_start();

@@ -1,8 +1,10 @@
 <?php
 
-require_once "functions.php";
+  require_once "functions.php";
 
-checkSession();
+   if (isset($_POST['logout'])) logout();
+   else checkSession();
+
 
 ?>
 

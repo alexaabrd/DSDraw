@@ -1,14 +1,20 @@
 <?php
 
-  session_start();
-  require_once('functions.php');
-   if ($_POST['addClass'] != "" ) { 
+ session_start();
+ require_once('functions.php');
+  if (!isset($_SESSION['teacher'])) header('location:login.php');
+    if ($_SESSION['teacher'] != true)  header('location:student.php');
+
+  if ($_POST['addClass'] != "" ) { 
 	if ($_POST['newClassName'] != "")
 	$classid = addClass( $_POST['newClassName'], $_SESSION['user_id'] ); 
 	else header('location:teacher.php');
-   }
-   if ($_POST['manageClass'] != "") $classid = $_POST['manageClass'];
-
+  }
+  if ($_POST['deleteClass'] != "") {  
+     deleteClass($_POST['classid']); 
+     header('location:teacher.php'); 
+  }
+  if ($_POST['manageClass'] != "") $classid = $_POST['manageClass'];
   if ($_POST['deleteStudent'] != "") {$classid = $_POST['classid']; deleteStudent($_POST['deleteStudent'], $classid);}
   if ($_POST['addStudent'] != "") { $classid = $_POST['classid']; addStudent($_POST['studentName'], $classid);}
 
@@ -30,9 +36,9 @@
 <body class="dsdraw">
 
   <h1>DSDRAW</h1>
-
+  <a href="teacher.php"> Home </a>
   <div class="header">
-    <form action="logout.php">
+    <form action="login.php" method="post">
      <label><?php echo "<h2> Hello, " . $_SESSION['first'] ."! </h2>"; ?><label>
      <input type="submit" name="logout" value="Logout">
     </form>
@@ -40,7 +46,8 @@
 
   <div class="container">
      <form class='style1' action="manageClass.php" method="post">
-        <label class='title-label'><?php echo getName($classid); ?> </label>
+        <label class='title-label'><?php echo getName($classid); ?> 
+	<input type='submit' class=' float trash' name='deleteClass' value='<?php echo $classid ?> '> </label>
         <table style='width:100%'>
           <?php
             $students = getStudents($classid);

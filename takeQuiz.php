@@ -2,8 +2,10 @@
 
   session_start();
   require_once('functions.php');
-
+  if (!isset($_SESSION['teacher'])) header('location:login.php');
+  if ($_SESSION['teacher'] != false)  header('location:teacher.php'); 
 $quizid = $_GET['id'];
+
 
 ?>
 
@@ -18,9 +20,9 @@ $quizid = $_GET['id'];
 <body class="dsdraw">
 
   <h1>DSDRAW</h1>
-
+    <a href="student.php"> Home </a>
   <div class="header">
-    <form action="logout.php">
+    <form action="login.php" method="post">
      <label><?php echo "<h2> Hello, " . $_SESSION['first'] ."! </h2>"; ?><label>
      <input type="submit" name="logout" value="Logout">
     </form>

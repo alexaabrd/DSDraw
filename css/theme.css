@@ -112,6 +112,15 @@ padding:20px;
 
 }
 
+label {
+  display:inline-block;
+  text-align:right;;
+}
+.float {
+  float:right;
+  display:inline-block;
+}
+
 .button {
  border: 0;
  display: block;

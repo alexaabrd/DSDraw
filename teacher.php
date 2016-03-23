@@ -1,7 +1,8 @@
 <?php
 session_start();
  require_once "functions.php";
-
+  if (!isset($_SESSION['teacher'])) header('location:login.php');
+    if ($_SESSION['teacher'] != true)  header('location:student.php');
 ?>
 
 <html>
@@ -16,7 +17,7 @@ session_start();
   <h1>DSDraw</h1>
 
   <div class="header">
-    <form action="logout.php">
+    <form action="login.php" method="post">
      <label><?php echo "<h2>Hello, " . $_SESSION['first'] ."!</h2>"; ?><label>
      <input type="submit" name="logout" value="Logout">
     </form>
