@@ -17,14 +17,14 @@ checkSession();
 </head>
 <body class="dsdraw">
 <center><h1></h2></center>
-    <form id="login"  action="dsDraw.php" method="post">
-      <label class="login-label">Username:</label>
+    <form class='style1'  action="dsDraw.php" method="post">
+      <label class="title-label">Username:</label>
       <br>
-      <input class="input" type="text" name="username">
+      <input class="login-input" type="text" name="username">
       <br><br>
-      <label class="login-label">Password:</label>
+      <label class="title-label">Password:</label>
       <br>
-      <input class="input" type="password" name="password">
+      <input class="login-input" type="password" name="password">
 <?php if ($_SESSION['error'] == true) echo "Invalid login credentials. Please try again."; ?> 
        <center><input type="submit" value="login"></center>
     </form>

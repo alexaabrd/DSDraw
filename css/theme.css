@@ -1,5 +1,4 @@
-
-#login {
+.style1 {
  width:500px;
  margin:50px auto 50px auto;
  background:rgba(0, 153, 153, .5);
@@ -18,14 +17,10 @@
 }
 
 .dsdraw h1 {
-color:darkGray;
- position:fixed;
- left:-250px;
- top:225;
- transform:rotate(-90deg);
+ color:darkgray;
 }
 
- .login-label {
+.title-label {
  text-transform:uppercase;
  font-size:1.5em;
  color:white;
@@ -35,7 +30,7 @@ color:darkGray;
  display:inline-block;
 }
 
-.input {
+.login-input {
  width:50%;
  border-radius:5px;
  border: 5px solid white;
@@ -60,33 +55,24 @@ top:0;
 border:2px solid black;
 }
 
-#class-container {
+.class-container {
 position:absolute;
 padding:10px;
-width:200px;
 bottom:0;
 left:0;
+right:50%;
 top:100px;
 border:2px solid black;
 }
 
 
-#quiz-container {
+.quiz-container {
 position:absolute;
 padding:10px;
-width:200px;
-left:221px;
-top:150px;
-bottom:0;
-border:2px solid black;
-}
-
-#content {
-position:absolute;
-top:150px;
-bottom:0;
-left:442;
+left:50%;
 right:0;
+top:100px;
+bottom:0;
 border:2px solid black;
 }
 
@@ -95,20 +81,46 @@ position:absolute;
 top:100px;
 left:0;
 right:0;
+bottom:0;
 padding:20px;
 }
 
-.tclass {
-margin:auto;
-margin-bottom:20px;
-width:75%;
-font-size:20px;
-text-align:center;
-border:2px solid darkblue;
+.addValue {
+  width:100%;
+}
+.manageClass {
+ background: url('../images/manageClass.png');
 }
 
-.tsubclass {
-border:2px solid green;
-margin:5px;
+.seeResults {
+ background: url('../images/seeResults.png');
 }
+
+.takeQuiz {
+ background: url('../images/takeQuiz.png');
+}
+
+.trash {
+ background: url('../images/trash.png');
+ border: 0;
+ display: block;
+ width:20px;
+ height:20px;
+ color:transparent;
+ padding:5px;
+ background-size:cover;
+
+}
+
+.button {
+ border: 0;
+ display: block;
+ width:100px;
+ height:20px;
+ color:transparent;
+ padding:5px;
+ background-size:cover;
+}
+
+
 
