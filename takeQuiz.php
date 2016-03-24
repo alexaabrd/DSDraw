@@ -15,7 +15,7 @@ $quizid = $_GET['id'];
 <head>
  <link rel="stylesheet" type="text/css" href="css/theme.css">
 <script type="text/javascript" src="script/canvas.js"></script>
-
+<script type="text/javascript" src="script/grader.js"></script>
 
    <title>DSDraw | Take Quiz </title>
 </head>
@@ -45,15 +45,13 @@ $quizid = $_GET['id'];
 	?>
      </label>
 
-
-
-
     <?php
 
 	//pull quiz information by $quizid from problems table
 	//figure out how to submit all the problem within one quiz and grade them individually
     ?>
     </form>
+
 
 
 <h3>
@@ -77,6 +75,11 @@ Instructions
 <p>
  <b>****After Button Pesses Move Mouse Into Canvas***</b>
 </p>
+
+
+
+QUESTION GOES HERE
+
 
 <div>
   Enter Node Data:
@@ -108,9 +111,9 @@ Instructions
   </canvas>
 </div>
 
-
-
-
+<div>
+<input id='gradeMe' type="submit" name="gradeMe" value="Submit to be Graded">
+</div>
   </div> <!--container -->
 
 </body>

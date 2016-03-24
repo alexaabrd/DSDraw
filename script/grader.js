@@ -1,4 +1,11 @@
 "use strict";
+  window.onload = function() {
+   document.getElementById('gradeMe').onclick = function() {
+   var canvas = document.getElementById('canvas1');
+   //call grade funtion with data from canvas 1
+   console.log("you are here");
+  }; 
+};
 
 var gradedA = [];
 var gradedB = [];
