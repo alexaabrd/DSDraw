@@ -257,13 +257,10 @@ function CanvasState(canvas) {
   }, true);
   canvas.addEventListener('mousemove', function(e) {
     if (clearShapesBool) {
-
-      myState.shapes = [];
-      myState.valid = false;
+      myState.clearShapes();
       clearShapesBool = false;
     }
     if (clearLinesBool) {
-
       myState.clearLines();
       // clear all connections from shapes
       var l = myState.shapes.length;
@@ -273,7 +270,6 @@ function CanvasState(canvas) {
         shape.previous = -1;
         shape.next = -1;
       }
-      myState.valid = false;
       clearLinesBool = false;
     }
     if (undoLineBool) {
@@ -354,11 +350,10 @@ function CanvasState(canvas) {
     counter++;
 
     if (currType == 'root') {
-      var rootid = -2;
-      myState.addShape(new Shape(++rootid, currType, tpointer, tprevious, tnext, "root", tvalues, mouse.x - 10, mouse.y - 10, 50, 50));
+      myState.addShape(new Shape(-1, currType, tpointer, tprevious, tnext, "root", tvalues, mouse.x - 10, mouse.y - 10, 50, 50));
     }
     if (currType == 'single-link') {
-      myState.addShape(new Shape(rootid, currType, tpointer, tprevious, tnext, document.getElementById("text").value, tvalues, mouse.x - 10, mouse.y - 10, 50, 50));
+      myState.addShape(new Shape(counter, currType, tpointer, tprevious, tnext, document.getElementById("text").value, tvalues, mouse.x - 10, mouse.y - 10, 50, 50));
     }
     if (currType == 'double-link') {
       myState.addShape(new Shape(counter, currType, tpointer, tprevious, tnext, document.getElementById("text").value, tvalues, mouse.x - 10, mouse.y - 10, 50, 50));
@@ -402,8 +397,9 @@ CanvasState.prototype.addShape = function(shape) {
   this.valid = false;
 }
 
-CanvasState.prototype.clearShapes = function(shape) {
+CanvasState.prototype.clearShapes = function() {
   this.shapes = [];
+  this.lines = [];
  //TODOOOOOO
   this.valid = false;
 }
