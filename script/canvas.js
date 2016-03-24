@@ -287,10 +287,9 @@ function CanvasState(canvas) {
       // todo: add text displaying modes
       myState.lock = !myState.lock;
       if(myState.lock) {
-         document.getElementById("lock").innerHTML = "***Arrow Mode***";
+         document.getElementById("lock").innerHTML = "Mode: Object Mode";
       } else {
-               document.getElementById("lock").innerHTML = "Object Mode";
-
+         document.getElementById("lock").innerHTML = "Mode: Arrow Mode ****************";
       }
       clicks = 0;
     }
