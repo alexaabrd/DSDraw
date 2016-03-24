@@ -1,17 +1,4 @@
 "use strict";
-function gradeMe() { 
-   var canvas = document.getElementById('canvas1');
-//   call grade funtion with data from canvas 1
-      console.log("you are here");
-         var e = document.getElementById('submitArea');
-                 e.innerHTML = "Your quiz has been submitted for grading";
-}
-function createMe() {
-   var canvas = document.getElementById('canvas1');
-//   call grade funtion with data from canvas 1
-          var e = document.getElementById('submitArea');
-              e.innerHTML = "Your quiz has been created";
-   } 
 
 var gradedA = [];
 var gradedB = [];

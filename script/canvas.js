@@ -25,6 +25,31 @@ document.getElementById('undo').onclick = function() {
   undoLineBool = true;
 };
 
+document.getElementById('gradeMe').onclick = function() {
+  var ret = s.shapes.concat(s.lines);
+
+  console.log("Method Called");
+    console.log(s);
+
+    console.log(maxPossiblePoints(s));
+
+    // someohow send alexa stuff
+    
+     //   call grade funtion with data from canvas 1
+               var e = document.getElementById('submitArea');
+                             e.innerHTML = "Your quiz has been submitted";
+                           };
+  
+
+document.getElementById('createMe').onclick = function() {
+   var canvas = document.getElementById('canvas1');
+  // call grade funtion with data from canvas 1
+            console.log("you are here");
+                      var e = document.getElementById('submitArea');
+                                   e.innerHTML = "Your quiz has been created";
+};
+
+
 var tpointer = -1;
 var tnext = -1;
 var tprevious = -1;
@@ -533,20 +558,7 @@ var oldSelectionSet = false;
 var s = new CanvasState(document.getElementById('canvas1'));
 
 
-function createMe() {
-  var ret = s.shapes.concat(s.lines);
-  
-  console.log("Method Called");
-    console.log(s);
-    
-    console.log(maxPossiblePoints(s));
-    
-    // someohow send alexa stuff
-  
-//   call grade funtion with data from canvas 1
-          var e = document.getElementById('submitArea');
-              e.innerHTML = "Your quiz has been created";
-} 
+
 
 
 };

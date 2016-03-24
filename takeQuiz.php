@@ -111,8 +111,11 @@ QUESTION GOES HERE
 </div>
 
 <div>
-<input id='gradeMe' type="submit" name="gradeMe" value="Submit to be Graded">
+<input id='gradeMe' type="submit" onclick='gradeMe()' name="gradeMe" value="Submit to be Graded">
 </div>
+
+<div id="createMe"> </div>
+
 
 </center>
 </div> <!--submitarea -->

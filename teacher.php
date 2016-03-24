@@ -55,7 +55,7 @@ session_start();
     </div>
 
     <div class="quiz-container">
-      <form class='style1' action="quizDetail.php" method="post">
+      <form class='style1' action="seeClassResults.php" method="post">
         <table style='width:100%'>
 	  <label class='title-label'>Quizzes</label>
           <?php
