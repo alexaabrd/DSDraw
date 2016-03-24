@@ -12,6 +12,8 @@ var undoLineBool = false;
 var showText = false;
 var currType = 'single-link';
 
+
+
 document.getElementById('clearshapes').onclick = function() {
   clearShapesBool = true;
 };
@@ -529,5 +531,22 @@ var lastClick = [0, 0];
 var oldSelectionSet = false;
 
 var s = new CanvasState(document.getElementById('canvas1'));
+
+
+function createMe() {
+  var ret = s.shapes.concat(s.lines);
+  
+  console.log("Method Called");
+    console.log(s);
+    
+    console.log(maxPossiblePoints(s));
+    
+    // someohow send alexa stuff
+  
+//   call grade funtion with data from canvas 1
+          var e = document.getElementById('submitArea');
+              e.innerHTML = "Your quiz has been created";
+} 
+
 
 };
