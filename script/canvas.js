@@ -262,39 +262,11 @@ function CanvasState(canvas) {
     }
     if (clearLinesBool) {
       myState.clearLines();
-      // clear all connections from shapes
-      var l = myState.shapes.length;
-      for (var i = 0; i < l; i++) {
-        var shape = myState.shapes[i];
-        shape.pointer = -1;
-        shape.previous = -1;
-        shape.next = -1;
-      }
       clearLinesBool = false;
     }
     if (undoLineBool) {
-      var arrowId = myState.lines[myState.lines.length - 1].id;
-      var beginId = myState.lines[myState.lines.length - 1].begin;
       myState.popLine();
       undoLineBool = false;
-
-      // make shape connection nulll (-1) 
-      var l = myState.shapes.length;
-      for (var i = 0; i < l; i++) {
-        var shape = myState.shapes[i];
-        if (shape.id == beginId) {
-          if (shape.pointer == arrowId) {
-            shape.pointer = -1;
-          }
-          if (shape.previous == arrowId) {
-            shape.previous = -1;
-          }
-          if (shape.next == arrowId) {
-            shape.next = -1;
-          }
-        }
-      }
-      myState.valid = false;
     }
 
     if (myState.dragging) {
@@ -378,6 +350,16 @@ function CanvasState(canvas) {
         tempShapes.push(shape);
       }
     }
+    
+     var arrows = [];
+    var ll = myState.lines.length;
+    for (var ii = 0; ii < ll; ii++) {
+      if (myState.lines[ii].begin == shapeToRemoveId || myState.lines[ii].end == shapeToRemoveId) {
+        arrows.push(myState.lines[ii]);
+      }
+    }
+    myState.removeObjConnections(arrows);
+    
     myState.selection = null;
     myState.shapes = tempShapes;
     myState.valid = false;
@@ -405,7 +387,50 @@ CanvasState.prototype.clearShapes = function() {
 }
 
 CanvasState.prototype.popLine = function() {
+ var arrowId = this.lines[this.lines.length - 1].id;
+  var beginId = this.lines[this.lines.length - 1].begin;
   this.lines.pop();
+  // make shape connection nulll (-1) 
+  var l = this.shapes.length;
+  for (var i = 0; i < l; i++) {
+    var shape = this.shapes[i];
+    if (shape.id == beginId) {
+      if (shape.pointer == arrowId) {
+        shape.pointer = -1;
+      }
+      if (shape.previous == arrowId) {
+        shape.previous = -1;
+      }
+      if (shape.next == arrowId) {
+        shape.next = -1;
+      }
+    }
+  }
+  this.valid = false;
+}
+
+CanvasState.prototype.removeObjConnections = function(arrows) {
+  for (var j = 0; j < arrows.length; j++) {
+    var arrowId = arrows[j].id;
+    var beginId = arrows[j].begin;
+    this.lines.pop();
+    // make shape connection nulll (-1) 
+    var l = this.shapes.length;
+    for (var i = 0; i < l; i++) {
+      var shape = this.shapes[i];
+      if (shape.id == beginId) {
+        if (shape.pointer == arrowId) {
+          shape.pointer = -1;
+        }
+        if (shape.previous == arrowId) {
+          shape.previous = -1;
+        }
+        if (shape.next == arrowId) {
+          shape.next = -1;
+        }
+      }
+    }
+  }
   this.valid = false;
 }
 
@@ -416,6 +441,14 @@ CanvasState.prototype.addLine = function(line) {
 
 CanvasState.prototype.clearLines = function() {
   this.lines = [];
+    // clear all connections from shapes
+  var l = this.shapes.length;
+  for (var i = 0; i < l; i++) {
+    var shape = this.shapes[i];
+    shape.pointer = -1;
+    shape.previous = -1;
+    shape.next = -1;
+  }
   this.valid = false;
 }
 
