@@ -24,10 +24,9 @@
 
 <body class="dsdraw">
 
-  <nav>
-  <h1>DSDRAW</h1>
-  <a href="student.php">Home</a>
-  </nav>
+
+ <a href="student.php"><h1><-Go Back to DsDraw Home</h1> </a>
+
   <div class="header">
     <form action="login.php" method="post">
      <label><?php echo "<h2> Hello, " . $_SESSION['first'] ."! </h2>"; ?></label>

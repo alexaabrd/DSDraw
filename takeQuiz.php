@@ -22,9 +22,8 @@ $quizid = $_GET['id'];
 
 <body class="dsdraw">
 
-  <h1>DSDRAW</h1>
-    <a href="student.php"> Home </a>
-
+ <h1><a href="student.php"><-Go Back to DsDraw Home</a></h1>
+  
   <div class="header">
     <form action="login.php" method="post">
      <label><?php echo "<h2> Hello, " . $_SESSION['first'] ."! </h2>"; ?></label>
@@ -53,7 +52,7 @@ $quizid = $_GET['id'];
     </form>
 
 
-
+<div id="submitArea">
 <h3>
 Instructions
 </h3>
@@ -80,7 +79,7 @@ Instructions
 
 QUESTION GOES HERE
 
-
+<center>
 <div>
   Enter Node Data:
   <input id="text" type="text">
@@ -106,7 +105,7 @@ QUESTION GOES HERE
 
 
 <div>
-  <canvas class="" id="canvas1" width="800" height="800" style="border:1px solid #d3d3d3;">
+  <canvas class="" id="canvas1" width="800" height="400" style="border:1px solid #d3d3d3;">
     Your browser does not support the HTML5 canvas tag.
   </canvas>
 </div>
@@ -114,7 +113,11 @@ QUESTION GOES HERE
 <div>
 <input id='gradeMe' type="submit" name="gradeMe" value="Submit to be Graded">
 </div>
+
+</center>
+</div> <!--submitarea -->
   </div> <!--container -->
+
 
 </body>
 </html>

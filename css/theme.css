@@ -12,12 +12,22 @@
 
 }
 
+a, a:link {
+ color:darkgray;
+ text-decoration:none;
+}
+
+ a:hover, h1 a:hover , a:hover h1{
+ color:lightgray !important;
+ text-decoration:bold;
+}
+
 .dsdraw {
  background:rgba(50, 200, 200, .25);
 }
 
-.dsdraw h1 {
- color:darkgray;
+ h1, h2 {
+color:darkgray;
 }
 
 .title-label {
