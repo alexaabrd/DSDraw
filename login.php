@@ -18,7 +18,7 @@
    <title>DSDraw | Login </title>
 </head>
 <body class="dsdraw">
-<center><h1></h2></center>
+<center>  <h1>DSDRAW</h1></center>
     <form class='style1'  action="dsDraw.php" method="post">
       <label class="title-label">Username:</label>
       <br>

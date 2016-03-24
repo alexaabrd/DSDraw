@@ -18,8 +18,8 @@ session_start();
 
   <div class="header">
     <form action="login.php" method="post">
-     <label><?php echo "<h2>Hello, " . $_SESSION['first'] ."!</h2>"; ?><label>
-     <input type="submit" name="logout" value="Logout">
+     <label><?php echo "<h2> Hello, " . $_SESSION['first'] ."! </h2>"; ?></label>
+     <input class='float' type="submit" name="logout" value="Logout">
     </form>
   </div>
 
@@ -74,7 +74,7 @@ session_start();
               }
             }
           ?>
-        <tr><td></td><td></td><td><a href="newQuiz.php">Create New Quiz</a></td></tr>
+        <tr><td></td><td></td><td><a href="createQuiz.php">Create New Quiz</a></td></tr>
         </table>
       </form>
     </div>

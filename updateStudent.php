@@ -24,13 +24,14 @@
 
 <body class="dsdraw">
 
+  <nav>
   <h1>DSDRAW</h1>
-  <a href="student.php"> Home </a>
-
+  <a href="student.php">Home</a>
+  </nav>
   <div class="header">
     <form action="login.php" method="post">
-     <label><?php echo "<h2> Hello, " . $_SESSION['first'] ."! </h2>"; ?><label>
-     <input type="submit" name="logout" value="Logout">
+     <label><?php echo "<h2> Hello, " . $_SESSION['first'] ."! </h2>"; ?></label>
+     <input class='float' type="submit" name="logout" value="Logout">
     </form>
   </div>
 
