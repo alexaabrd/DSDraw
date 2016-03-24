@@ -28,10 +28,11 @@ document.getElementById('undo').onclick = function() {
 document.getElementById('gradeMe').onclick = function() {
   var ret = s.shapes.concat(s.lines);
 
-  console.log("Method Called");
-    console.log(s);
+    console.log(ret);
 
-    console.log(maxPossiblePoints(s));
+    console.log(maxPointsPossible(ret));
+//	console.log();
+
 
     // someohow send alexa stuff
     
@@ -42,11 +43,35 @@ document.getElementById('gradeMe').onclick = function() {
   
 
 document.getElementById('createMe').onclick = function() {
-   var canvas = document.getElementById('canvas1');
-  // call grade funtion with data from canvas 1
-            console.log("you are here");
-                      var e = document.getElementById('submitArea');
-                                   e.innerHTML = "Your quiz has been created";
+  var ret = s.shapes.concat(s.lines);
+
+
+   var retToData = JSON.stringify(ret);
+
+                var e = document.getElementById('submitArea');
+		var string = "Your quiz has been created" ;
+                                   e.innerHTML = string;
+
+	var c = document.getElementById('cid');
+	var cid = c.options[c.selectedIndex].value;
+	var name = document.getElementById('title').value;
+        var q = document.getElementById('q').value;
+
+
+
+	var xmlhttp = new XMLHttpRequest();
+	xmlhttp.onreadystatechange = function() {
+		if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+			e.innerHTML += " -- " + xmlhttp.responseText;
+		}
+	};
+	xmlhttp.open("POST", "pushToDatabase.php", true);
+
+var tosend ='data="' + retToData +'"&name="' + name + '"&class="' +cid +'"&q="' +q +'"';
+xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	xmlhttp.send(tosend);
+
+
 };
 
 

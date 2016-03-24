@@ -39,12 +39,12 @@
      <label class='title-label'>
         Create Quiz
      </label>
-	<center><select>
+	<center><select id ="cid">
     <?php
 	$classes = getClasses($_SESSION['user_id']);	
 	for ($i = 0; $i < $classes->num_rows; $i++) {
                 $row = $classes->fetch_row();
-                echo "<option>";
+                echo "<option value='" . $row[0] ."'>";
 		echo getName($row[0]);
 		echo "</option>";
 	}
@@ -52,24 +52,19 @@
         //pull quiz information by $quizid from problems table
         //figure out how to submit all the problem within one quiz and grade them individually
     ?>
-	</select></center>
+	</select>
+	<br>Quiz title:<input id="title" type="text" name="title">
+	<br><br> Question:<input id='q' type="text"  name="q">
+</center>
    </form>
 
 
 
 <div id="submitArea">
 
- <label class='title-label'>
-        Question
-     </label>
-  <center>
-	<textArea style="width: 400px; height:100px;">type your question here.</textarea>
-  </center>
 
 <br><br>
- <label class='title-label'>
-        Answer
-     </label>
+ <label class='title-label'>Answer</label>
 
 <h3>
 Instructions

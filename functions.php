@@ -218,6 +218,25 @@ session_destroy();
  unset($_SESSION['first']);
 }
 
+
+
+
+
+function pushData($cid, $name, $q, $ret) {
+
+echo "you are here";
+ $conn = connect();
+
+ $query = "insert into quiz values ('" . $name . ", '" . $cid . "');";
+
+  echo "<br>" . $query;
+ // $conn->query($query);
+
+
+ $conn->close();
+
+}
+
 ?>
 
 
