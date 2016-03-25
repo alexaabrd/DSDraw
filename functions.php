@@ -29,6 +29,7 @@ function checkSession() {
 
 
 
+
 function login($u, $p) {
  $conn = connect();
  
@@ -64,6 +65,62 @@ function login($u, $p) {
 
 
 
+
+
+
+
+
+
+
+
+function createAccount($f,$l,$u,$p,$e,$t) {
+  $conn = connect();
+        session_start();
+ $query = "select * from users where username ='" .$u . "';";
+  $result = $conn->query($query);
+
+  if ($result->num_rows > 0) {
+        $_SESSION['create'] = false;
+            header("Location: newUser.php");
+        $conn->close();
+        return;
+        }
+ $query = "insert into logins (username,password) VALUES ('" . $u . "', '" . $p . "');";
+ $conn->query($query);
+ $query = "select * from logins where username ='" .$u . "' AND password = '" . $p . "';";
+  $result = $conn->query($query);
+  $row = $result->fetch_row();
+
+ $query = "insert into users (login, first,last,username,teacher) VALUES (" . $row[0] . ", '" . $f . "', '" . $l . "', '" . $u . "', '" . $t . "');";
+
+if ($conn->query($query) ) { login($u, $p); }
+else {  $_SESSION['error'] = true;
+header("Location: newUser.php");
+    $conn->close();
+        return;
+
+}
+  $conn->close();
+
+}
+
+
+
+
+
+
+
+
+
+
+function getProblems($id) {
+  $conn = connect();
+ $query = "select * from problems where quizid = ". $id . ";";
+
+  $result = $conn->query($query);
+  $conn->close();
+  return $result;
+}
 
 function getClasses() {
   $conn = connect();
@@ -140,6 +197,14 @@ function getResults($qid, $uid) {
  return $result;
 }
 
+function getQuizResults($qid) {
+ $conn = connect();
+ $query = "select * from results where quizID = " .$qid . " ORDER BY problemId;";
+//	echo "<br>" .$query . "<br>";
+ $result = $conn->query($query);
+ $conn->close();
+ return $result;
+}
 
 
 function addClass($name, $id) {
@@ -152,8 +217,7 @@ function addClass($name, $id) {
    $query = "update classrooms set deleted = false where id = " . $row[0] . " ;";
    $result = $conn->query($query);
  } else {
-   echo "class did not exist";
-   $query = "insert into classrooms (owner,name) values (" . $id .",'" . $name . "');";
+   $query = "insert into classrooms (owner,name,deleted) values (" . $id .",'" . $name . "',false);";
    $conn->query($query);
    $query = "Select * from classrooms where name = '" . $name . "' AND owner = " . $id .";";
    $class =  $conn->query($query);
@@ -190,7 +254,6 @@ function addStudent($uid, $cid) {
   }
  else {
   $query = "insert into enrollment values (" . $cid . ",". $id . ", 0);";
-  echo $query;
   $conn->query($query);
 
  }
@@ -222,20 +285,37 @@ session_destroy();
 
 
 
-function pushData($cid, $name, $q, $ret) {
+function createQuiz($cid, $name, $q, $ret) {
 
-echo "you are here";
  $conn = connect();
 
- $query = "insert into quiz values ('" . $name . ", '" . $cid . "');";
+ $query = "insert into quiz (name,classid) values ('" . $name . "', " . $cid . ");";
 
-  echo "<br>" . $query;
- // $conn->query($query);
+//  echo "<br>" . $query;
+  $conn->query($query);
+   $query = "select * from quiz where name = '" . $name . "' AND  classId = ". $cid .";";
+//  echo "<br>" . $query;
+ $result = $conn->query($query);
+ $row = $result->fetch_row();
+ $id = $row[0];
 
-
+ $query = "insert into problems (quizid, question, solution) values (" . $id . ", '" . $q . "', '" . $ret ."');";
+//  echo "<br>" . $query;
+$conn->query($query);
  $conn->close();
 
 }
+
+
+function submitQuiz($qid, $pid, $grade, $poss) {
+ $conn = connect();
+
+ $query = "insert into results (quizid, userid,problemID,score,total) values (" . $qid . ", "  .  $_SESSION['user_id'] . ", " . $pid . ", " . $grade . ", " . $poss . ");";
+
+  $conn->query($query);
+  $conn->close();
+}
+
 
 ?>
 

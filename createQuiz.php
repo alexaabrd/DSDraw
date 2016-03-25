@@ -49,12 +49,10 @@
 		echo "</option>";
 	}
 	
-        //pull quiz information by $quizid from problems table
-        //figure out how to submit all the problem within one quiz and grade them individually
     ?>
 	</select>
 	<br>Quiz title:<input id="title" type="text" name="title">
-	<br><br> Question:<input id='q' type="text"  name="q">
+	<br><br><textarea id='q'  style='height:50px;width:250px;'>Type your question here</textarea>
 </center>
    </form>
 

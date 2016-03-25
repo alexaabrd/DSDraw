@@ -25,7 +25,7 @@
 <body class="dsdraw">
 
 
- <a href="student.php"><h1><-Go Back to DsDraw Home</h1> </a>
+ <a href="student.php"><h1>Go Back to DsDraw Home</h1> </a>
 
   <div class="header">
     <form action="login.php" method="post">
@@ -56,8 +56,9 @@
 		$poss = $row[4];
 		$points += $score;
 		$total += $poss;
+		$temp = $i +1;
 		echo "<tr>";
-		echo "<td> Problem " . $i . "</td>";
+		echo "<td> Problem " . $temp . "</td>";
 		echo "<td> " . $score . "/" . $poss . "</td>";
 		echo "</tr>";
 	    }

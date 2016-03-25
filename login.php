@@ -28,12 +28,14 @@
       <br>
       <input class="login-input" type="password" name="password">
 <?php if ($_SESSION['error'] == true) echo "Invalid login credentials. Please try again."; ?> 
-       <center><input type="submit" value="login"></center>
+       <center><input type="submit" name="submit" value="login"></center>
     </form>
 <center> <a href="newUser.php">            Create New Account>></a></center>
 </body>
 </html>
 
 <?php  
-  $_SESSION['error'] = false; 
+  $_SESSION['error'] = false;
+ $_SESSION['create'] = true;
+ 
 ?>

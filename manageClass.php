@@ -35,7 +35,7 @@
 
 <body class="dsdraw">
 
- <a href="student.php"><h1><-Go Back to DsDraw Home</h1> </a>
+ <a href="student.php"><h1>Go Back to DsDraw Home</h1> </a>
 
   <div class="header">
     <form action="login.php" method="post">

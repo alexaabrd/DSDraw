@@ -26,20 +26,31 @@ document.getElementById('undo').onclick = function() {
 };
 
 document.getElementById('gradeMe').onclick = function() {
-  var ret = s.shapes.concat(s.lines);
+  var answer = s.shapes.concat(s.lines);
+                var e = document.getElementById('submitArea');
+                var string = "Your quiz has been submitted for grading" ;
+                                   e.innerHTML = string;
 
-    console.log(ret);
+        var solution = document.getElementById('solution').value;
+        var pid = document.getElementById('pid').value;
+        var qid = document.getElementById('qid').value;
+	var sol = JSON.parse(solution);
 
-    console.log(maxPointsPossible(ret));
-//	console.log();
+	var possible = maxPointsPossible(sol);
+	var grade= gradeAnswer(sol, answer);
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function() {
+                if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                        e.innerHTML +=  xmlhttp.responseText;
+                }
+        };
+        xmlhttp.open("POST", "pushToDatabase.php", true);
 
+	var tosend ='solution=' + sol +'&answer=' + answer + '&qid=' +qid+ '&pid=' +pid +'&poss='+ possible +'&grade='+ grade;
+	xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xmlhttp.send(tosend);
 
-    // someohow send alexa stuff
-    
-     //   call grade funtion with data from canvas 1
-               var e = document.getElementById('submitArea');
-                             e.innerHTML = "Your quiz has been submitted";
-                           };
+};
   
 
 document.getElementById('createMe').onclick = function() {
@@ -62,12 +73,12 @@ document.getElementById('createMe').onclick = function() {
 	var xmlhttp = new XMLHttpRequest();
 	xmlhttp.onreadystatechange = function() {
 		if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-			e.innerHTML += " -- " + xmlhttp.responseText;
+			e.innerHTML +=  xmlhttp.responseText;
 		}
 	};
 	xmlhttp.open("POST", "pushToDatabase.php", true);
 
-var tosend ='data="' + retToData +'"&name="' + name + '"&class="' +cid +'"&q="' +q +'"';
+var tosend ='data=' + retToData +'&name=' + name + '&class=' +cid +'&q=' +q;
 xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	xmlhttp.send(tosend);
 

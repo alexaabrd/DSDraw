@@ -2,20 +2,32 @@
 
 require_once "functions.php";
 
-echo "here";
 
-pushData($_POST["class"],$_POST["name"], $_POST["q"], $_POST["data"]);
+session_start();
 
-/*echo $_POST["data"];
-echo "<br>";
-echo $_POST["class"];
+if ($_SESSION["teacher"] == true) createQuiz($_POST["class"],$_POST["name"], $_POST["q"], $_POST["data"]);
+else { 
+  submitQuiz($_POST["qid"], $_POST["pid"],   $_POST["grade"], $_POST["poss"]); 
+}
+
+/*echo "<br><br><br>";
+
+echo $_POST["qid"];
 echo "<br>";
 
-echo $_POST["q"];
+echo $_POST["pid"];
+echo "<br>";
+echo $_POST["solution"];
+echo "<br>";
+echo $_POST["answer"];
 echo "<br>";
 
-echo $_POST["name"];
+echo $_POST["grade"];
 echo "<br>";
+
+echo $_POST["poss"];
+echo "<br><br><br>";
+
 */
 
 

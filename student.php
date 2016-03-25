@@ -35,15 +35,14 @@ session_start();
 		$row = $classes->fetch_row();
 		$classname = getName($row[0]);
 		$quizzes= getQuiz($row[0]);
-		for ($i = 0; $i < $quizzes->num_rows; $i++) {
+		for ($j = 0; $j < $quizzes->num_rows; $j++) {
 		  $row = $quizzes->fetch_row();
 		  echo "<tr>";
 		  echo "<td>" . $row[1] . "</td>";
 		  echo "<td>" . $classname . "</td>";
 		  $quizResults = getResults($row[0], $_SESSION['user_id']);
-		  if ($quizResults->num_rows > 0)
-			 echo "<td><input class=' button seeResults' type='submit' name='seeResults' value='". $row[0]."'></td>";
-		  else echo "<td><input class=' button takeQuiz' type='submit' name='takeQuiz' value='". $row[0]."'></td>";
+		  if ($quizResults->num_rows == 0) echo "<td><input class=' button takeQuiz' type='submit' name='takeQuiz' value='". $row[0]."'></td>";
+		 else echo "<td><input class=' button seeResults' type='submit' name='seeResults' value='". $row[0]."'></td>";
 		  echo "</tr>";
 		}
 	      }

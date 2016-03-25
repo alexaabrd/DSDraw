@@ -55,7 +55,7 @@ session_start();
     </div>
 
     <div class="quiz-container">
-      <form class='style1' action="seeClassResults.php" method="post">
+      <form class='style1' action="seeResults.php" method="post">
         <table style='width:100%'>
 	  <label class='title-label'>Quizzes</label>
           <?php
@@ -64,17 +64,17 @@ session_start();
               $row = $classes->fetch_row();
               $classname = getName($row[0]);
               $quizzes= getQuiz($row[0]);
-              for ($i = 0; $i < $quizzes->num_rows; $i++) {
+              for ($j = 0; $j < $quizzes->num_rows; $j++) {
                 $row = $quizzes->fetch_row();
                 echo "<tr>";
                 echo "<td>" . $row[1] . "</td>";
                 echo "<td>" . $classname . "</td>";
-                echo "<td><input class='button seeResults' type='submit' name='manageQuiz' value='". $row[0]."'></td>";
+                echo "<td><input class='button seeResults' type='submit' name='seeResults' value='". $row[0]."'></td>";
                 echo "</tr>";
               }
             }
           ?>
-        <tr><td></td><td></td><td><a href="createQuiz.php">Create New Quiz</a></td></tr>
+        <tr><td></td><td></td><td><a href="createQuiz.php" style='color:white;'>Create New Quiz</a></td></tr>
         </table>
       </form>
     </div>
