@@ -1,0 +1,142 @@
+.style1 {
+ width:500px;
+ margin:50px auto 50px auto;
+ background:rgba(0, 153, 153, .5);
+ padding:20px;
+ border-radius:20px;
+ box-shadow:     5px  5px 30px rgba(20, 50, 50, .3),
+                -5px -5px 30px rgba(20, 50, 50, .3),
+                -5px  5px 30px rgba(20, 50, 50, .3),
+                 5px -5px 30px rgba(20, 50, 50, .3);
+    padding: 20px;
+
+}
+
+a, a:link {
+ color:darkgray;
+ text-decoration:none;
+}
+
+ a:hover, h1 a:hover , a:hover h1{
+ color:lightgray !important;
+ text-decoration:bold;
+}
+
+.dsdraw {
+ background:rgba(50, 200, 200, .25);
+}
+
+ h1, h2 {
+color:darkgray;
+}
+
+.title-label {
+ text-transform:uppercase;
+ font-size:1.5em;
+ color:white;
+ font-weight:bold;
+ width:100%;
+ text-align:center;
+ display:inline-block;
+}
+
+.login-input {
+ width:50%;
+ border-radius:5px;
+ border: 5px solid white;
+ background:rgba(255, 255, 255, .25);
+ box-shadow:
+      inset 2px 2px 8px  rgba(0,0,0,0.4),
+            4px 4px 16px rgba(0,0,0,0.4);
+ padding: 15px;
+ font-size:1.2em;
+ text-align:center;
+ margin: 0 25% 10px 25%;
+}
+
+
+
+.header {
+position:absolute;
+width:20%;
+height:100px;
+right:0;
+top:0;
+}
+
+.class-container {
+position:absolute;
+padding:10px;
+bottom:0;
+left:0;
+right:50%;
+top:50px;
+}
+
+
+.quiz-container {
+position:absolute;
+padding:10px;
+left:50%;
+right:0;
+top:50px;
+bottom:0;
+}
+
+.container {
+position:absolute;
+top:50px;
+left:0;
+right:0;
+bottom:0;
+padding:20px;
+}
+
+.addValue {
+  width:100%;
+}
+.manageClass {
+ background: url('../images/manageClass.png');
+}
+
+.seeResults {
+ background: url('../images/seeResults.png');
+}
+
+.takeQuiz {
+ background: url('../images/takeQuiz.png');
+}
+
+.trash {
+ background: url('../images/trash.png');
+ border: 0;
+ display: block;
+ width:20px;
+ height:20px;
+ color:transparent;
+ padding:5px;
+ background-size:cover;
+
+}
+
+label {
+  display:inline-block;
+  text-align:right;;
+}
+.float {
+  float:right;
+  display:inline-block;
+}
+
+.button {
+ border: 0;
+ display: block;
+ width:100px;
+ height:20px;
+ color:transparent;
+ padding:5px;
+ background-size:cover;
+}
+
+
+
